@@ -49,6 +49,7 @@ public class ArticleService {
     public String uploadImageToCloudinary(MultipartFile image) throws IOException {
         Map uploadResult = cloudinary.uploader().upload(image.getBytes(), ObjectUtils.emptyMap());
         return uploadResult.get("secure_url").toString();
-        // zwraca bezpieczny link HTTPS
+        
     }
 }
+
