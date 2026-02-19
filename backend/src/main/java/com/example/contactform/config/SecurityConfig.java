@@ -1,56 +1,3 @@
-//package com.example.contactform.config;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.Customizer;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.web.SecurityFilterChain;
-//import org.springframework.core.env.Environment;
-//
-//@Configuration
-//public class SecurityConfig {
-//
-//    private final Environment env;
-//
-//    public SecurityConfig(Environment env) {
-//        this.env = env;
-//    }
-//
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        boolean isDev = env.acceptsProfiles("dev");
-//
-//        if (isDev) {
-//            http
-//
-//                    .csrf(csrf -> csrf.disable())
-//                    .authorizeHttpRequests(auth -> auth
-//                            .requestMatchers("/send-message").permitAll()
-//                            .anyRequest().permitAll()
-//                    );
-//        } else {
-//            http
-//                    .cors() // <-- TO JEST KLUCZOWE
-//                    .and()
-//                    .csrf(Customizer.withDefaults())
-//                    .authorizeHttpRequests(auth -> auth
-//                            .requestMatchers("/send-message").permitAll()
-//                            .anyRequest().authenticated()
-//                    );
-//        }
-//
-//    }
-//
-//        return http.build();
-//    }
-//}
 package com.example.contactform.config;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -121,13 +68,13 @@ public class SecurityConfig {
                                     "/api/admin/logout",
                                     "/prerender/**"
                             ).permitAll()
-                            .anyRequest().permitAll() // DEV: wszystko dozwolone
+                            .anyRequest().permitAll() // DEV
                     );
         } else {
-//            tryb produkcyjny
+//            PRODUCTION
             http
                     .cors(Customizer.withDefaults())
-                    .csrf(AbstractHttpConfigurer::disable) // Jeśli chcesz, możesz zostawić włączony, ale wymaga tokenów CSRF z frontu
+                    .csrf(AbstractHttpConfigurer::disable) 
                     .formLogin(AbstractHttpConfigurer::disable)
                     .httpBasic(AbstractHttpConfigurer::disable)
                     .sessionManagement(session -> session
@@ -146,7 +93,7 @@ public class SecurityConfig {
                             .requestMatchers(HttpMethod.PUT, "/api/articles/**").authenticated()
                             .requestMatchers(HttpMethod.DELETE, "/api/articles/**").authenticated()
 
-                            // BLOKADA RESZTY
+                            // BLOCKING EVERYTHING ELSE
                             .anyRequest().denyAll()
                     );
         }
@@ -155,3 +102,4 @@ public class SecurityConfig {
     }
 
 }
+
