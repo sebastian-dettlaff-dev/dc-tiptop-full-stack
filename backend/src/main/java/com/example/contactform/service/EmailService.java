@@ -1,26 +1,3 @@
-//package com.example.contactform.service;
-//
-//import com.example.contactform.dto.ContactFormDto;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.mail.SimpleMailMessage;
-//import org.springframework.mail.javamail.JavaMailSender;
-//import org.springframework.stereotype.Service;
-//@Service
-//public class EmailService {
-//    @Autowired
-//    private JavaMailSender mailSender;
-//    public void sendContactEmail(ContactFormDto form){
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        if (mailSender == null) {
-//            throw new IllegalStateException("mailSender is null — sprawdź konfigurację Spring Mail!");
-//        }
-//        message.setTo("sdettlaff679@gmail.com");
-//        message.setSubject("New message from Contact Form.");
-//        message.setText(
-//                "Name: " + form.getName() + "\nEmail: " + form.getEmail() + "\nMessage: " + form.getMessage());
-//        mailSender.send((message));
-//    }
-//}
 package com.example.contactform.service;
 
 import com.example.contactform.dto.ContactFormDto;
@@ -50,4 +27,5 @@ public class EmailService {
                         "Message: " + form.getMessage());
         mailSender.send(message);
     }
+
 }
