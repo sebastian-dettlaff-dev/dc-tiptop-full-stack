@@ -17,7 +17,7 @@ The application is fully deployed and operational at:
 * **Spring Data JPA** (Database management)
 * **MySQL** (Relational database hosted on Hostinger)
 * **Java Mail Sender** (Integration for automated contact forms)
-
+* **Cloudinary API** (Cloud-based image management and optimization)
 
 ### Frontend:
 * **Vanilla JavaScript (ES6+)**
