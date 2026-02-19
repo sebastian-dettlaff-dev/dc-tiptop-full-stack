@@ -55,7 +55,7 @@ public class ArticleController {
                 return ResponseEntity.badRequest().body("Unsupported image format. Only WEBP, PNG, or SVG are allowed.");
             }
 
-            // Obsługa duplikatów nazw – aktualizuj do imageUrl
+            // duplicates
             if (articleService.imageFilenameExists(image.getOriginalFilename())) {
                 return ResponseEntity.badRequest().body("Image with this filename already exists. Please rename the file.");
             }
@@ -87,30 +87,25 @@ public class ArticleController {
         Page<Article> articlesPage = articleService.getArticles(pageRequest);
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
-        // Nie cachuj
+        // no cache
         headers.add(HttpHeaders.PRAGMA, "no-cache");
-        // Dla starszych przeglądarek
+       
         headers.add(HttpHeaders.EXPIRES, "0");
-        // Natychmiastowe wygaśnięci
+        
         return new ResponseEntity<>(articlesPage, headers, HttpStatus.OK);
 
     }
 
-
-    //    @GetMapping("/{id}")
-//    public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
-//        return ResponseEntity.of(articleService.getArticleById(id));
-//    }
     @GetMapping("/{id}")
     public ResponseEntity<Article> getArticleById(@PathVariable Long id) {
         Optional<Article> articleOptional = articleService.getArticleById(id);
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
-        // Nie cachuj
+        //no cache
          headers.add(HttpHeaders.PRAGMA, "no-cache");
-         // Dla starszych przeglądarek
+         
         headers.add(HttpHeaders.EXPIRES, "0");
-        // Natychmiastowe wygaśnięcie
+        
         return articleOptional.map(article -> new ResponseEntity<>(article, headers, HttpStatus.OK))
                 .orElseGet(() -> ResponseEntity.notFound().build());}
 
@@ -144,3 +139,4 @@ public class ArticleController {
             return ResponseEntity.ok(updatedArticle);
         }
     }
+
