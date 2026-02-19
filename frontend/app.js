@@ -115,7 +115,7 @@ document.addEventListener("keydown", (e) => {
   }
 });
 //-------------------------------------
-// qr-intesection function - fixed position scrolling
+// qr-intersection function - fixed position scrolling
 //VARIABLES:
 if(document.body.dataset.page === "main-page"){
 const  qr_Box = document.querySelector(".qr_Reviews");
@@ -139,19 +139,11 @@ observing_Fucnction.observe(targetSection);
 }
 }
 
-
-
-
-//ide all reviews
-
+//all reviews
 if (document.body.dataset.page === "main-page") {
 const time_Review = 6000; // 6 sekund
 const testimonials = document.querySelectorAll('.testimonial_Item');
-
-
 let activeIndex = 0;
-
-
 function showTestimonial(index) {
   testimonials.forEach((item, i) => {
     if(i === index){
@@ -160,11 +152,8 @@ function showTestimonial(index) {
         item.classList.remove("active");
     }
   });
-
-
 }
-
-// Przełącz na następną recenzję
+// Move to another review
 function nextTestimonial() {
   activeIndex++;
   if(activeIndex >= testimonials.length) {
@@ -173,28 +162,23 @@ function nextTestimonial() {
   showTestimonial(activeIndex);
 }
 
-// Pokaz pierwszą recenzję od razu
+// show first review immediately
 showTestimonial(activeIndex);
 
-// Ustaw automatyczne przełączanie
+// Setting up automatation
 setInterval(nextTestimonial, time_Review);
 }
-
-
-
-
 //   -------------------------------------------------
  //VALIDATION OF CONTACT FORM BOTH DYNAMIC AND STATIC / recaptcha:
  if (document.body.dataset.page === "main-page" || document.body.dataset.page === "contact-form") {
 document.addEventListener("DOMContentLoaded", function () {
-    // Pobieranie elementów
+    // all elements
     const form = document.getElementById("validationForm");
 
     const companyInput = document.getElementById("company_Input");
     const postcodeInput = document.getElementById("postcode_Input");
     const phoneInput = document.getElementById("phone_Input");
     const emailInput = document.getElementById("email_Input");
-
     const messageCompanyError = "Field cannot stay empty and name must contain at least 2 characters.";
     const messageEmailError = "Invalid email address.";
     const messagePhoneError = "Invalid UK phone number.";
@@ -203,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      // WALIDACJA FORMULARZA
+      //CONTACTFORM VALIDATION
       if (!checkInputs()) {
         return;
       }
@@ -218,7 +202,6 @@ document.addEventListener("DOMContentLoaded", function () {
             email: emailInput.value.trim(),
             message: document.getElementById("message_Input").value.trim()
           };
-
           fetch("https://api.dctiptop.co.uk/send-message", {
             method: "POST",
             headers: {
@@ -229,25 +212,25 @@ document.addEventListener("DOMContentLoaded", function () {
              const responseMessageDiv = document.getElementById("responseMessage");
             if (response.ok) {
             //   alert("Message sent. Thank you!");
-             // Pokaż wiadomość sukcesu
-             responseMessageDiv.style.display = "block";
-             responseMessageDiv.style.opacity = "1"; // jeśli używasz przejścia opacity
-   responseMessageDiv.style.position = "fixed";
-responseMessageDiv.style.top = "50%";
-responseMessageDiv.style.left = "50%";
-responseMessageDiv.style.transform = "translate(-50%, -50%)";
-responseMessageDiv.style.backgroundColor = "white"; // lub inny kolor tła
-responseMessageDiv.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
-responseMessageDiv.style.padding = "20px";
-responseMessageDiv.style.borderRadius = "10px";
-responseMessageDiv.style.zIndex = "999999";
-responseMessageDiv.style.color = "green"; // lub "red" przy błędzie
-responseMessageDiv.style.border = "2px solid green"; // lub red
-responseMessageDiv.style.fontSize = "18px";
-responseMessageDiv.style.textAlign = "center";
-responseMessageDiv.style.maxWidth = "90%";
-responseMessageDiv.style.width = "fit-content";
-responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as possible.";
+             // show success message
+            responseMessageDiv.style.display = "block";
+            responseMessageDiv.style.opacity = "1"; // jeśli używasz przejścia opacity
+            responseMessageDiv.style.position = "fixed";
+            responseMessageDiv.style.top = "50%";
+            responseMessageDiv.style.left = "50%";
+            responseMessageDiv.style.transform = "translate(-50%, -50%)";
+            responseMessageDiv.style.backgroundColor = "white"; // lub inny kolor tła
+            responseMessageDiv.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+            responseMessageDiv.style.padding = "20px";
+            responseMessageDiv.style.borderRadius = "10px";
+            responseMessageDiv.style.zIndex = "999999";
+            responseMessageDiv.style.color = "green"; // lub "red" przy błędzie
+            responseMessageDiv.style.border = "2px solid green"; // lub red
+            responseMessageDiv.style.fontSize = "18px";
+            responseMessageDiv.style.textAlign = "center";
+            responseMessageDiv.style.maxWidth = "90%";
+            responseMessageDiv.style.width = "fit-content";
+            responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as possible.";
               form.reset();
               setTimeout(() => {
                 responseMessageDiv.style.display = "none";
@@ -262,25 +245,24 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
             const responseMessageDiv = document.getElementById("responseMessage");
             responseMessageDiv.style.display = "block";
             responseMessageDiv.style.opacity = "1"; // jeśli używasz przejścia opacity
-responseMessageDiv.style.position = "fixed";
-responseMessageDiv.style.top = "50%";
-responseMessageDiv.style.left = "50%";
-responseMessageDiv.style.transform = "translate(-50%, -50%)";
-responseMessageDiv.style.backgroundColor = "white"; // lub inny kolor tła
-responseMessageDiv.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
-responseMessageDiv.style.padding = "20px";
-responseMessageDiv.style.borderRadius = "10px";
-responseMessageDiv.style.zIndex = "999999";
-responseMessageDiv.style.color = "green"; // lub "red" przy błędzie
-responseMessageDiv.style.border = "2px solid green"; // lub red
-responseMessageDiv.style.fontSize = "18px";
-responseMessageDiv.style.textAlign = "center";
-responseMessageDiv.style.maxWidth = "90%";
-responseMessageDiv.style.width = "fit-content";
-responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as possible.";
+            responseMessageDiv.style.position = "fixed";
+            responseMessageDiv.style.top = "50%";
+            responseMessageDiv.style.left = "50%";
+            responseMessageDiv.style.transform = "translate(-50%, -50%)";
+            responseMessageDiv.style.backgroundColor = "white"; // lub inny kolor tła
+            responseMessageDiv.style.boxShadow = "0 4px 12px rgba(0, 0, 0, 0.3)";
+            responseMessageDiv.style.padding = "20px";
+            responseMessageDiv.style.borderRadius = "10px";
+            responseMessageDiv.style.zIndex = "999999";
+            responseMessageDiv.style.color = "green"; // lub "red" przy błędzie
+            responseMessageDiv.style.border = "2px solid green"; // lub red
+            responseMessageDiv.style.fontSize = "18px";
+            responseMessageDiv.style.textAlign = "center";
+            responseMessageDiv.style.maxWidth = "90%";
+            responseMessageDiv.style.width = "fit-content";
+            responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as possible.";
 
             console.error("Error:", error);
-            // alert("Connecting error!");
           });
         });
       });
@@ -289,14 +271,11 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
     // VALIDATION OF CONTACT FORM - WHEN CLICK SUBMIT
     function checkInputs() {
         let isValid = true;
-
+        // variables
         const companyName = companyInput.value.trim();
         const postcode = postcodeInput.value.trim();
         const phone = phoneInput.value.trim();
         const email = emailInput.value.trim();
-
-       
-
         // checking company field
         if (companyName.length < 2) {
             setErrorFor(companyInput, messageCompanyError);
@@ -304,7 +283,6 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
         } else {
             setSuccessFor(companyInput);
         }
-
         // checking email field
         const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,}$/;
         if (!emailRegex.test(email)) {
@@ -322,7 +300,6 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
         } else {
             setSuccessFor(phoneInput);
         }
-
         // checking uk postcode
         const postcodeRegex = /^([A-Z]{1,2}\d{1,2}[A-Z]?\s?\d[A-Z]{2})$/i;
         if (!postcodeRegex.test(postcode)) {
@@ -331,19 +308,16 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
         } else {
             setSuccessFor(postcodeInput);
         }
-
         return isValid;
     }
     //Dynamic validation of contact form FIELDS
     companyInput.addEventListener("input" , () => {
-        
         if(companyInput.value.trim().length >= 2) {
             setSuccessFor(companyInput);
         }else {
             setErrorFor(companyInput , messageCompanyError)
         }
     });
-
     emailInput.addEventListener("input", () => {
         const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,}$/;
         if(emailRegex.test(emailInput.value.trim())){
@@ -352,7 +326,6 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
             setErrorFor(emailInput ,messageEmailError);
         }
     });
-
     phoneInput.addEventListener("input", () => {
         const phoneRegex = /^(?:\+44\s?7\d{3}|\(?07\d{3}\)?)\s?\d{3}\s?\d{3}$/;
         if(phoneRegex.test(phoneInput.value.trim())){
@@ -369,7 +342,6 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
         setErrorFor(postcodeInput, "Invalid UK postcode.");
     }
 });
-
     // function showing error class
     function setErrorFor(input, message) {
         const formControl = input.parentElement;
@@ -378,7 +350,6 @@ responseMessageDiv.textContent = "Message sent! Thank you! We respond as soon as
         formControl.classList.add("error");
         formControl.classList.remove("success");
     }
-
     // function showing success class
     function setSuccessFor(input) {
         const formControl = input.parentElement;
@@ -411,14 +382,11 @@ window.addEventListener("DOMContentLoaded", () => {
                 const current = filterItem.querySelector(".active");
                 if (current) current.classList.remove("active");
                 clicked.classList.add("active");
-
-
-                // -------------------------------------------------------------
+// -------------------------------------------------------------
 
 
 //eporting content of clicked element and deleting empty spaces on beginning and end:
                 let filterName = clicked.getAttribute("data-name");
-                
                 filterImages.forEach((image) => {
                     // exporting alt atribute and changing to lower case
                     let imgAlt = image.getAttribute("data-name");
@@ -434,29 +402,20 @@ window.addEventListener("DOMContentLoaded", () => {
            
         };
          for(let index = 0; index < filterImages.length; index++){
-            
             filterImages[index].setAttribute("onclick","preview(this)")
-            
             }
-// calling function chnge Category when event - click:
+        // calling function chnge Category when event - click:
         filterItem.addEventListener("click", changeCategory);
-    } else {
+        } else {
         console.log("This is not main website - i can't use this method");
-    }
-});
-
-
-
-
+        }
+        });
 //selecting all required elements from DOM
 const previewBox = document.querySelector(".pre-box");
 const previewImg = previewBox.querySelector("img");
 const categoryName = previewBox.querySelector(".title-box p");
 const closeIcon = previewBox.querySelector(".icon");
 const shadow = document.querySelector(".shadow-box");
-
-
-
 
 //fuction for fullscreen image view
 function preview(element) {
@@ -482,9 +441,6 @@ function preview(element) {
 }
 
 }
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
   const banner = document.getElementById("cookiePopUp");
   const acceptBtn = document.getElementById("acceptCookie");
@@ -494,7 +450,6 @@ document.addEventListener("DOMContentLoaded", function () {
     d.setTime(d.getTime() + (days*24*60*60*1000));
     document.cookie = `${name}=${value}; expires=${d.toUTCString()}; path=/`;
   }
-
   function getCookie(name) {
     const nameEQ = name + "=";
     const ca = document.cookie.split(';');
@@ -505,7 +460,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     return null;
   }
-
   function showBanner() {
     if (!getCookie("cookiesAccepted")) {
       banner.style.display = "flex";
@@ -513,28 +467,20 @@ document.addEventListener("DOMContentLoaded", function () {
       banner.style.display = "none";
     }
   }
-
   acceptBtn.addEventListener("click", acceptCookies);
   acceptBtn.addEventListener("touchstart", acceptCookies);
-
   function acceptCookies() {
     setCookie("cookiesAccepted", "true", 365);
     banner.style.display = "none";
   }
-
   showBanner();
 });
-
-
 
 // --------------------------------------------
 // Go Up button function
 console.log("back-to-top element:", document.querySelector(".back-to-top"));
-
 document.addEventListener("DOMContentLoaded", function () {
     const toTopBtn = document.querySelector(".back-to-top");
-    
-
     window.addEventListener("scroll", () => {
         console.log("scroll event fired", window.pageYOffset);
         if (toTopBtn) {
@@ -547,7 +493,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-
     if (toTopBtn) {
         toTopBtn.addEventListener("click", (event) => {
             event.preventDefault();
@@ -572,10 +517,8 @@ if (document.body.dataset.page === "faq") {
                 const answer = questionElement.querySelector(".answer-faq");
                 answer.classList.toggle("show-answer");
                 // downloading up and down icon and toggle them each time user click.
-
                 const upIcon = questionElement.querySelector(".up-icon");
                 const downIcon = questionElement.querySelector(".down-icon");
-
                 upIcon.classList.toggle("show-answer");
                 downIcon.classList.toggle("show-answer");
             });
@@ -583,20 +526,11 @@ if (document.body.dataset.page === "faq") {
     });
 }
 
-
-
-
-
-
-// -----------------------------------------------------------------------------------LOGIC FOR BLOG:
-
-
+// ----------------------------------LOGIC FOR BLOG-------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', function() {
-  // --- Sprawdzenie strony ---
   const page = document.body.dataset.page;
-
-  // ---Modal panel editioning) ---
+  // ---Modal panel editioning ---
   window.openEditArticleModal = function(articleId) {
     fetch(`https://api.dctiptop.co.uk/api/articles/${articleId}`)
       .then(res => {
@@ -615,7 +549,6 @@ document.addEventListener('DOMContentLoaded', function() {
         alert("We occured issue, tring to display available articles list.");
       });
   };
-
   if(page === "blog") {
     // --- Find elements ---
     const adminLoginModal = document.getElementById('admin-login-modal-blog');
@@ -632,26 +565,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevPageBtn = document.getElementById('prev-page');
     const nextPageBtn = document.getElementById('next-page');
     const pageInfo = document.getElementById('page-info');
-
     let currentPage = 0;
     const pageSize = 6;
     let isAdminLoggedIn = false;
-
     // First, Initialize TinyMCE article editor :
 tinymce.init({
     selector: '#edit-article-content,#article-content',
     plugins:'lists link image code table emoticons charmap media',
        toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | link image | table | emoticons | charmap | media | code', 
 });
-
-    // --- Events ---
-
-
-
-
-
-
-
     // Log in modal
     openAdminLoginButton.addEventListener('click', () => {
       adminLoginModal.style.display = 'block';
@@ -706,8 +628,7 @@ tinymce.init({
                                         showNotification("Incorrect username or password!", false);
                                         });
                                     });
-
-    // Funkcja do ładowania artykułów do edycji admina
+    // function to load article on the admin page
     function loadAdminArticles() {
       if(!articlesList) return;
       fetch('https://api.dctiptop.co.uk/api/articles?page=0&size=100',{credentials:'include'})
@@ -726,8 +647,7 @@ tinymce.init({
         })
         .catch(err => console.error('Error during articles-list loading:', err));
     }
-
-    // Obsługa formularza edycji artykułu
+    
     editArticleForm.addEventListener('submit', function(event) {
       event.preventDefault();
       const id = document.getElementById('edit-article-id').value;
@@ -736,19 +656,15 @@ tinymce.init({
       const summary = document.getElementById('edit-article-summary').value.trim();
       const imageFile = document.getElementById('edit-article-image').files[0];
       const content = tinymce.get('edit-article-content').getContent();
-      
-
       if(summary.split(/\s+/).length > 80){
         alert("Your limit of characters in this section equals 80.Please adjuse content.");
         return;
       }
-
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
       formData.append('summary', summary);
       if(imageFile) formData.append('image', imageFile);
-
       fetch(`https://api.dctiptop.co.uk/api/articles/${id}`, {
         method: 'PUT',
         body: formData,
@@ -777,18 +693,15 @@ tinymce.init({
       const summary = document.getElementById('article-summary').value.trim();
       const imageFile = document.getElementById('article-image').files[0];
       const content  = tinymce.get('article-content').getContent();
-
       if(summary.split(/\s+/).length > 80){
         alert("Limit of charachters for Summary section equals 80.");
         return;
       }
-
       const formData = new FormData();
       formData.append('title', title);
       formData.append('content', content);
       formData.append('summary', summary);
       if(imageFile) formData.append('image', imageFile);
-
       fetch('https://api.dctiptop.co.uk/api/articles', {
         method: 'POST',
         body: formData,
@@ -808,7 +721,6 @@ tinymce.init({
         alert("Error during adding articles.");
       });
     });
-
     // Admin Logout
     logoutButton.addEventListener('click', () => {
             fetch('https://api.dctiptop.co.uk/api/admin/logout', {
@@ -878,19 +790,16 @@ tinymce.init({
           articlesContainer.innerHTML = '<p>Sorry, We could not load the articles.</p>';
         });
     }
-
     prevPageBtn.addEventListener('click', () => {
       if(currentPage > 0) {
         currentPage--;
         loadArticles(currentPage);
       }
     });
-
     nextPageBtn.addEventListener('click', () => {
       currentPage++;
       loadArticles(currentPage);
     });
-
     // Na start załaduj artykuły dla zwykłych użytkowników
     if(!isAdminLoggedIn) {
       loadArticles(currentPage);
@@ -899,7 +808,6 @@ tinymce.init({
         articlesList.style.display = "none";
     }
   }
-
   if(page === "article") {
       window.prerenderReady = false;
     const urlParams = new URLSearchParams(window.location.search);
@@ -914,7 +822,6 @@ tinymce.init({
         document.getElementById('article-title').textContent = article.title;
         document.getElementById('article-image').src = article.imageUrl;
         document.getElementById('article-content').innerHTML = article.content;
-          // 1. Title strony
       document.title = article.title + " | Blog&News";
 
       // 2. Meta description
@@ -925,7 +832,6 @@ tinymce.init({
         document.head.appendChild(metaDesc);
       }
       metaDesc.content = article.summary || article.title;
-
       // 3. Open Graph
       function setMetaProperty(property, content) {
         let tag = document.querySelector(`meta[property='${property}']`);
@@ -936,7 +842,6 @@ tinymce.init({
         }
         tag.setAttribute('content', content);
       }
-
       setMetaProperty('og:type', 'article');
       setMetaProperty('og:title', article.title);
       setMetaProperty('og:description', article.summary || article.title);
@@ -953,22 +858,16 @@ tinymce.init({
       });
   }
 });
-
-
-
-
 // typing mechanism for blog title:
 const h1_blog_title = document.querySelector("#blog-title");
 document.addEventListener('DOMContentLoaded', function() {
     // Ensure this code only runs on the blog page
     if (document.body.dataset.page === "blog") {
-
 const text_Ttile_Blog = "The Clean Kitchen Chronicles: Insights on Ducts, Ventilation, and Deep Cleaning ";
 let index_Text_Blog = 0;
 const time_Typing_Blog = 100;
 const addLetter = () => {
     h1_blog_title.textContent += text_Ttile_Blog[index_Text_Blog];
-
     index_Text_Blog++;
     if(index_Text_Blog === text_Ttile_Blog.length){
         clearInterval(interval_ID)
@@ -995,4 +894,5 @@ observer.observe(h1_blog_title);
 console.warn("Element h1_blog_title not found.")
 }
     }
+
 })
