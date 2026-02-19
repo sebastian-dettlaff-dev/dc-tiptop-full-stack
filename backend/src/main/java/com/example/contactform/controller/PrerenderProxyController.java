@@ -18,7 +18,7 @@ import java.util.Map;
 @RequestMapping("/prerender")
 public class PrerenderProxyController {
 
-    private static final String PRERENDER_TOKEN = "qDUnIo8kXIdydTi1ScyG"; // <-- Wklej swój token
+    private static final String PRERENDER_TOKEN = "qDUnIo8kXIdydTi1ScyG"; 
     private static final String FRONTEND_BASE_URL = "https://www.dctiptop.co.uk";
 
     private static final List<String> BOT_USER_AGENTS = List.of(
@@ -55,7 +55,7 @@ public class PrerenderProxyController {
                 .anyMatch(bot -> userAgent.toLowerCase().contains(bot.toLowerCase()));
 
         if (!isBot) {
-            // Przekierowanie użytkownika na frontend
+            // user - go to frontend
             String url = UriComponentsBuilder.fromHttpUrl(FRONTEND_BASE_URL + path)
                     .queryParams(toMultiValueMap(queryParams))
                     .build()
@@ -66,13 +66,13 @@ public class PrerenderProxyController {
                     .build();
         }
 
-        // Zapytanie do Prerender.io
+        //query - Prerender.io
         String fullUrl = UriComponentsBuilder.fromHttpUrl(FRONTEND_BASE_URL + path)
                 .queryParams(toMultiValueMap(queryParams))
                 .build()
                 .toUriString();
 
-//        String prerenderUrl = "https://service.prerender.io/" + fullUrl;
+
         String prerenderUrl = "https://service.prerender.io/" + URLEncoder.encode(fullUrl, StandardCharsets.UTF_8);
 
         HttpHeaders headers = new HttpHeaders();
@@ -105,3 +105,4 @@ public class PrerenderProxyController {
         return map;
     }
 }
+
